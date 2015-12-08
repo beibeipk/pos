@@ -1,28 +1,31 @@
-function find_same(str,str_count,check){
-   for(var j=0;j<str_count.length;j++)  {
-       if(str==str_count[j].barcode){
-          str_count[j].count++
-          check=1
+//function1------------------------------------------------------------------------------------------------------
+function find_same(str,inputs_count,fs){
+   for(var j=0;j<inputs_count.length;j++)  {
+       if(str==inputs_count[j].barcode){
+          inputs_count[j].count++
+          fs=1
        }
    }
-   if (check==0) {
-       str_count.push({barcode:str,count:1})
+   if (fs==0) {
+       inputs_count.push({barcode:str,count:1})
    }
 }
 
-function another_find_same(str,str_count,check){
+//function2-------------------------------------------------------------------------------------------------------
+function another_find_same(str,inputs_count,fs){
     chenzhong=str.split('-')
-    for(var j=0;j<str_count.length;j++){
-        if(chenzhong[0]==str_count[j].barcode){
-            str_count[j].count+=parseInt(chenzhong[1])
-            check=1
+    for(var j=0;j<inputs_count.length;j++){
+        if(chenzhong[0]==inputs_count[j].barcode){
+            inputs_count[j].count+=parseInt(chenzhong[1])
+            fs=1
         }
     }
-    if(check==0){
-        str_count.push({barcode:chenzhong[0],count:parseInt(chenzhong[1])})
+    if(fs==0){
+        inputs_count.push({barcode:chenzhong[0],count:parseInt(chenzhong[1])})
     }
 }
 
+//function3-------------------------------------------------------------------------------------------------------
 function count_inputs(inputs){
     var inputs_count=[],chenzhong=[],fs
     for(var i=0;i<inputs.length;i++){
@@ -37,6 +40,7 @@ function count_inputs(inputs){
     return inputs_count
 }
 
+//function4--------------------------------------------------------------------------------------------------------
 function get_order_info(inputs_count,allItems){
     var order_info=[]
     for(i=0;i<inputs_count.length;i++) {
@@ -49,6 +53,7 @@ function get_order_info(inputs_count,allItems){
     return order_info
 }
 
+//function5---------------------------------------------------------------------------------------------------------
 function get_gift_info(order_info,promotion){
     var gift_info=[]
     for(i=0;i<order_info.length;i++){
@@ -61,6 +66,7 @@ function get_gift_info(order_info,promotion){
     return gift_info
 }
 
+//function6---------------------------------------------------------------------------------------------------------
 function minus_gift_price(order_info,gift_info){
     var order_info_final=order_info
     for(i=0;i<order_info.length;i++)  {
@@ -73,6 +79,7 @@ function minus_gift_price(order_info,gift_info){
    return order_info_final
 }
 
+//function7---------------------------------------------------------------------------------------------------------
 function caculate_price(order_info_final,gift_info){
     var caculate={Sum:0,gifts_price:0}
     for(i=0;i<order_info_final.length;i++){
@@ -84,6 +91,7 @@ function caculate_price(order_info_final,gift_info){
     return caculate
 }
 
+//funciton-8--------------------------------------------------------------------------------------------------------
 function print_Receipt(order_info_final,gift_info,caculate){
     var Receipt='***<没钱赚商店>购物清单***\n'
     for(i=0;i<order_info_final.length;i++)  {
@@ -97,6 +105,7 @@ function print_Receipt(order_info_final,gift_info,caculate){
     return Receipt
 }
 
+//Print-------------------------------------------------------------------------------------------------------------
 function printInventory(inputs)
 {
 //console.log(JSON.stringify(inputs));
