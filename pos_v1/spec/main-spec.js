@@ -40,3 +40,6 @@ describe('pos', function () {
           expect(console.log).toHaveBeenCalledWith(expectText);
     });
 });
+
+describe('find_same',function(){
+})
